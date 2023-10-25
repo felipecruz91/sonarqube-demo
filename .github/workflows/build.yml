@@ -5,6 +5,8 @@ on:
       - main
   pull_request:
     types: [opened, synchronize, reopened]
+  workflow_dispatch:
+
 env:
   REGISTRY: docker.io
   REGISTRY_USER: felipecruz1638514
