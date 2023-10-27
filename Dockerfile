@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1
+
 
 # Comments are provided throughout this file to help you get started.
 # If you need more help, visit the Dockerfile reference guide at
@@ -48,6 +48,11 @@ RUN --mount=type=cache,target=/var/cache/apk \
         tzdata \
         && \
         update-ca-certificates
+
+# Noncompliant
+RUN mkdir -p /etc/ssh
+RUN apk add --no-cache openssh-keygen && \
+    ssh-keygen -N "passphrase" -t rsa -b 2048 -f /etc/ssh/rsa_key
 
 # Create a non-privileged user that the app will run under.
 # See https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#user
